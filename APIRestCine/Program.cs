@@ -67,6 +67,8 @@ builder.Services.AddScoped<PeliculaRepository>();
 builder.Services.AddScoped<PeliculaService>();
 builder.Services.AddScoped<SalaCineRepository>();
 builder.Services.AddScoped<SalaCineService>();
+builder.Services.AddScoped<PeliculaSalaCineRepository>();
+builder.Services.AddScoped<PeliculaSalaCineService>();
 
 // Configuración de CORS
 builder.Services.AddCors(options =>

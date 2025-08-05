@@ -1,4 +1,5 @@
 ﻿using DataBaseFirst.Models;
+using DataBaseFirst.Models.Dto;
 using DataBaseFirst.Repository;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,11 @@ namespace DataBaseFirst.Services
         public async Task<SalaCine?> ObtenerSalaCineAsync(int idSalaCine)
         {
             return await _salaCineRepository.ObtenerSalaCineAsync(idSalaCine);
+        }
+
+        public async Task<SalaCineEstadoDto?> BuscarEstadoSalaPorNombreAsync(string nombreSala)
+        {
+            return await _salaCineRepository.BuscarEstadoSalaPorNombreAsync(nombreSala);
         }
 
         public async Task<int> RegistrarSalaCineAsync(SalaCine salaCine)

@@ -1,5 +1,6 @@
 ﻿using DataBaseFirst.Context;
 using DataBaseFirst.Models;
+using DataBaseFirst.Models.Dto;
 using DataBaseFirst.Repository.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,18 @@ namespace DataBaseFirst.Repository
                 .AsNoTracking()
                 .AsEnumerable()
                 .FirstOrDefault());
+        }
+
+        public async Task<SalaCineEstadoDto?> BuscarEstadoSalaPorNombreAsync(string nombreSala)
+        {
+            var param = new SqlParameter("@Nombre", nombreSala);
+
+            var resultado = await _context.SalaCineEstado
+                .FromSqlRaw("EXEC PA_BUSCAR_NOMBRE_SALA @Nombre", param)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return resultado.FirstOrDefault();
         }
 
         public async Task<int> RegistrarSalaCineAsync(SalaCine salaCine)
