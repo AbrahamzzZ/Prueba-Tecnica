@@ -1,4 +1,5 @@
 ﻿using DataBaseFirst.Models;
+using DataBaseFirst.Models.Dto;
 using DataBaseFirst.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +29,26 @@ namespace APIRestCine.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<SalaCine>> GetSalaCine(int id)
         {
-            var pelicula = await _salaCineService.ObtenerSalaCineAsync(id);
+            var salaCine = await _salaCineService.ObtenerSalaCineAsync(id);
 
-            if (pelicula == null)
+            if (salaCine == null)
             {
                 return NotFound();
             }
 
-            return Ok(pelicula);
+            return Ok(salaCine);
+        }
+
+        // GET: api/salaCine/Sala Sur
+        [HttpGet("nombre/{nombre}")]
+        public async Task<ActionResult<SalaCineEstadoDto>> GetNombreSalaCine(string nombre)
+        {
+            var resultado = await _salaCineService.BuscarEstadoSalaPorNombreAsync(nombre);
+
+            if (resultado == null)
+                return NotFound();
+
+            return Ok(resultado);
         }
 
         // POST: api/salaCine

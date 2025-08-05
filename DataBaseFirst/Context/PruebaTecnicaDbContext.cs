@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataBaseFirst.Models;
+using DataBaseFirst.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataBaseFirst.Context;
@@ -21,6 +22,10 @@ public partial class PruebaTecnicaDbContext : DbContext
     public virtual DbSet<PeliculaSalaCine> PeliculaSalaCines { get; set; }
 
     public virtual DbSet<SalaCine> SalaCines { get; set; }
+
+    public DbSet<SalaCineEstadoDto> SalaCineEstado { get; set; }
+
+    public DbSet<FechaPublicacionDto> FechaPublicacion { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -46,6 +51,11 @@ public partial class PruebaTecnicaDbContext : DbContext
         {
             entity.HasKey(e => e.IdSala).HasName("PK__SALA_CIN__E8F6CE89EF22AD3E");
         });
+
+
+        modelBuilder.Entity<SalaCineEstadoDto>().HasNoKey();
+
+        modelBuilder.Entity<FechaPublicacionDto>().HasNoKey();
 
         OnModelCreatingPartial(modelBuilder);
     }
