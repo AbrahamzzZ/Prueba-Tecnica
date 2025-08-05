@@ -20,6 +20,9 @@ public partial class Pelicula
     [Column("DURACION")]
     public int? Duracion { get; set; }
 
+    [Column("ESTADO")]
+    public bool? Estado { get; set; }
+
     [InverseProperty("IdPeliculaNavigation")]
     public virtual ICollection<PeliculaSalaCine> PeliculaSalaCines { get; set; } = new List<PeliculaSalaCine>();
 }
