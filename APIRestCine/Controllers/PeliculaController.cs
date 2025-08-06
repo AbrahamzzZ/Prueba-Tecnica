@@ -39,7 +39,7 @@ namespace APIRestCine.Controllers
         }
 
         // GET: api/pelicula/MeteGol
-        [HttpGet("/nombre{nombre}")]
+        [HttpGet("nombre/{nombre}")]
         public async Task<ActionResult<Pelicula>> GetNombrePelicula(string nombre)
         {
             var pelicula = await _peliculaService.ObtenerNombrePeliculaAsync(nombre);
