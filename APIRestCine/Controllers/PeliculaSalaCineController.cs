@@ -26,7 +26,7 @@ namespace APIRestCine.Controllers
         }
 
         // GET: api/salaCine/2025-08-5
-        [HttpGet("{fechaPublicacion}")]
+        [HttpGet("fecha-publicacion/{fechaPublicacion}")]
         public async Task<ActionResult<IEnumerable<FechaPublicacionDto>>> GetFechaPulblicacionPelicula(string fechaPublicacion)
         {
             var resultado = await _peliculaSalaCineService.BuscarPeliculaFechaPublicacionAsync(fechaPublicacion);
